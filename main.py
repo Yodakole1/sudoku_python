@@ -154,10 +154,13 @@ def main():
                         elif event.key == pygame.K_0 or event.key == pygame.K_BACKSPACE:
                             board[vrsta][kolona] = 0
 
+        
         screen.fill(BACKGROUND_COLOR)
         oznacena_celija(selektovana_celija)
         ispis_brojeva(board, zakljucane_celije)
+        
         nacrtaj_grid()
+
         draw_button("Solution", 20, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
         draw_button("Restart", 160, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
         draw_button("Done", 300, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
