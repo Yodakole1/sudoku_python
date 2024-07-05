@@ -1,19 +1,25 @@
 def pronadji_prazna_polja(tabla):
+    
     for i in range(9):
         for j in range(9):
             if(tabla[i][j] == 0):
                 return i,j
             
+    
     return -1,-1            
 
 
+
 def provera_resenja_sudoku(tabla):
+    
     #Find empty cell
     vrsta,kolona = pronadji_prazna_polja(tabla)
 
+    
     #Puzzle is solved
     if(vrsta == -1):
         return True 
+    
     
     for broj in range(1,10):
         if(validan_potez(tabla,vrsta,kolona,broj)):
@@ -27,6 +33,7 @@ def provera_resenja_sudoku(tabla):
         #If not possible remove that number
         tabla[vrsta][kolona] = 0
 
+    
     #Backtrack
     return False        
 
@@ -39,6 +46,7 @@ def validan_potez(tabla,vrsta,kolona,broj):
         if(tabla[vrsta][i] == broj):
             return False
         
+    
     #Check if num is in column
     for i in range(0,9):
         if(tabla[i][kolona] == broj):

@@ -23,8 +23,6 @@ def generisi_sudoku():
     #Empty cells
     prazna_mesta = 46
 
-    
-
     #Remove some numbers
     while(prazna_mesta>0):
         vrsta  = random.randint(0, 8)
@@ -56,17 +54,4 @@ def kopiranje_table(tabla):
 def print_a(tabla):
     for i in tabla:
         print(i)
-
-
-#tabla = generisi_sudoku()
-#print_a(tabla)
-
-
-
-
-
-
-#if(provera_resenja_sudoku(tabla)):
-#    print_a(tabla)  
-#else:
-    #print("danedoa")       
+  
