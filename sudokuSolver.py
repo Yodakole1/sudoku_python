@@ -1,3 +1,4 @@
+#Find cells
 def pronadji_prazna_polja(tabla):
     
     for i in range(9):
@@ -9,7 +10,7 @@ def pronadji_prazna_polja(tabla):
     return -1,-1            
 
 
-
+#Check solution
 def provera_resenja_sudoku(tabla):
     
     #Find empty cell
@@ -38,7 +39,7 @@ def provera_resenja_sudoku(tabla):
     return False        
 
 
-
+#Valid move
 def validan_potez(tabla,vrsta,kolona,broj):
     
     #Check if num is in row

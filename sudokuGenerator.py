@@ -37,21 +37,14 @@ def generisi_sudoku():
 
     return tabla        
 
-
+#Copy board for user
 def kopiranje_table(tabla):
     kopirana_tabla = [[0 for _ in range (9)]for _ in range (9)]
     for i in range(0,9):
         for j in range(0,9):
             kopirana_tabla[i][j]=tabla[i][j]
 
-    print_a(kopirana_tabla)
-          
 
     return kopirana_tabla            
 
-
-
-def print_a(tabla):
-    for i in tabla:
-        print(i)
   
