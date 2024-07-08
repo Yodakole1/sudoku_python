@@ -13,15 +13,16 @@ LINE_COLOR = (0, 0, 0)
 HIGHLIGHT_COLOR = (180, 180, 255)
 TEXT_COLOR = (0, 0, 0)
 LOCKED_TEXT_COLOR = (200, 0, 0)
-BUTTON_COLOR = (0, 150, 0)
+BUTTON_COLOR = (0, 100, 0)
 BUTTON_TEXT_COLOR = (255, 255, 255)
+BLUR_COLOR = (200, 200, 200)
+
 
 #Initialize pygame
 pygame.init()
 
-
 #Display
-screen = pygame.display.set_mode((WINDOW_SIZE-5, WINDOW_SIZE + 80))
+screen = pygame.display.set_mode((WINDOW_SIZE - 5, WINDOW_SIZE + 50))
 pygame.display.set_caption("Sudoku")
 
 
@@ -31,14 +32,12 @@ button_font = pygame.font.Font(None, 28)
 message_font = pygame.font.Font(None, 48)
 
 
-
 #Draw grid
 def nacrtaj_grid():
     for i in range(10):
         width = 1 if i % 3 != 0 else 3
         pygame.draw.line(screen, LINE_COLOR, (i * CELL_SIZE, 0), (i * CELL_SIZE, GRID_SIZE), width)
         pygame.draw.line(screen, LINE_COLOR, (0, i * CELL_SIZE), (GRID_SIZE, i * CELL_SIZE), width)
-
 
 
 
@@ -62,7 +61,6 @@ def oznacena_celija(cell):
 
 
 
-
 #Draw button
 def draw_button(text, x, y, width, height, color, text_color):
     pygame.draw.rect(screen, color, (x, y, width, height))
@@ -73,8 +71,10 @@ def draw_button(text, x, y, width, height, color, text_color):
 
 #Check user solution
 def check_solution(board, zakljucane_celije):
+    
     for vrsta in range(9):
         for kolona in range(9):
+    
             if not zakljucane_celije[vrsta][kolona]:
                 broj = board[vrsta][kolona]
                 board[vrsta][kolona] = 0
@@ -86,14 +86,16 @@ def check_solution(board, zakljucane_celije):
 
 
 
-#Main function
+# Main function
 def main():
+    
     def reset_board():
-        nonlocal board, zakljucane_celije, selektovana_celija, message
+        nonlocal board, zakljucane_celije, selektovana_celija, message, display_blur
         board = generisi_sudoku()
         zakljucane_celije = [[board[i][j] != 0 for j in range(9)] for i in range(9)]
         selektovana_celija = None
-        message = ""  #Clear the message
+        message = ""
+        display_blur = False  # Unblur the board when resetting
 
     
     board = generisi_sudoku()
@@ -101,29 +103,31 @@ def main():
     selektovana_celija = None
     igra = True
     message = ""
+    display_blur = False
 
     
     while igra:
+        
         for event in pygame.event.get():
             
             if event.type == pygame.QUIT:
                 igra = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                
                 x, y = event.pos
+                
                 if y > GRID_SIZE:
-
-                    
                     if 20 <= x <= 140 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
                         provera_resenja_sudoku(board)
-                        zakljucane_celije = [[True] * 9 for _ in range(9)]  
+                        zakljucane_celije = [[True] * 9 for _ in range(9)]
                     elif 160 <= x <= 280 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
                         reset_board()
                     elif 300 <= x <= 420 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
+                        
                         if check_solution(board, zakljucane_celije):
                             message = "Tacno!"
                         else:
                             message = "Nije tacno(Nub si)."
+                        display_blur = True
                 else:
                     selektovana_celija = (y // CELL_SIZE, x // CELL_SIZE)
 
@@ -131,7 +135,7 @@ def main():
                 
                 if selektovana_celija is not None:
                     vrsta, kolona = selektovana_celija
-                    
+                
                     if not zakljucane_celije[vrsta][kolona]:
                         if event.key == pygame.K_1:
                             board[vrsta][kolona] = 1
@@ -155,24 +159,36 @@ def main():
                             board[vrsta][kolona] = 0
 
         
+        
         screen.fill(BACKGROUND_COLOR)
         oznacena_celija(selektovana_celija)
         ispis_brojeva(board, zakljucane_celije)
-        
         nacrtaj_grid()
 
-        draw_button("Solution", 20, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
-        draw_button("Restart", 160, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
-        draw_button("Done", 300, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
         
-        if message:
-            message_text = message_font.render(message, True, TEXT_COLOR)
-            text_rect = message_text.get_rect(center=(WINDOW_SIZE // 2, WINDOW_SIZE // 2))
-            screen.blit(message_text, text_rect)
+        draw_button("Resenje", 20, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
+        draw_button("Restart", 160, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
+        draw_button("WOOHOO", 300, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
 
+
+        if display_blur:
+            blur_surface = pygame.Surface((GRID_SIZE, GRID_SIZE))
+            blur_surface.fill(BLUR_COLOR)
+            blur_surface.set_alpha(228)
+            screen.blit(blur_surface, (0, 0))
+            
+            if message:
+                message_text = message_font.render(message, True, TEXT_COLOR)
+                text_rect = message_text.get_rect(center=(WINDOW_SIZE // 2, WINDOW_SIZE // 2))
+                screen.blit(message_text, text_rect)
+
+        
         pygame.display.flip()
 
+    
     pygame.quit()
+
+
 
 if __name__ == "__main__":
     main()
