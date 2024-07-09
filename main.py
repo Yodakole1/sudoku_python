@@ -130,7 +130,7 @@ def main():
                         if check_solution(board, zakljucane_celije):
                             message = "Correct!"
                         else:
-                            message = "Incorrect a:("
+                            message = "Incorrect :("
                         display_blur = True
                 else:
                     selektovana_celija = (y // CELL_SIZE, x // CELL_SIZE)
