@@ -1,7 +1,10 @@
 #Sudoku
 
 How to play?
-The board is a 9x9 grid that must be filled with numbers from 1 to 9. Numbers cannot be repeated in any row or column. Additionally, within each 3x3 subgrid, numbers mustn't repeat.
+
+The board is a 9x9 grid that must be filled with numbers from 1 to 9. Numbers cannot be repeated in any row or column. 
+Additionally, within each 3x3 subgrid, numbers mustn't repeat.
+
 ![Screenshot from 2024-07-09 18-52-07](https://github.com/Yodakole1/sudoku_python/assets/119262845/6fe4d4d3-9a16-4f27-a222-fe435c93f378)
 
 **Preview:**
