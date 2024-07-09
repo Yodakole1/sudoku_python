@@ -5,6 +5,7 @@ The board is a 9x9 grid that must be filled with numbers from 1 to 9. Numbers ca
 ![Screenshot from 2024-07-09 18-52-07](https://github.com/Yodakole1/sudoku_python/assets/119262845/6fe4d4d3-9a16-4f27-a222-fe435c93f378)
 
 Preview:
+
 [Screencast from 2024-07-09 19-06-13.webm](https://github.com/Yodakole1/sudoku_python/assets/119262845/59507fb3-a071-4d35-83be-62737b4c85c7)
 
 • Use the arrow keys to move.
@@ -17,8 +18,12 @@ Preview:
 2️⃣**sudokuGenerator.py**: This file is responsible for generating the Sudoku puzzles. It includes functions to create Sudoku board. 
 3️⃣**sudokuSolver.py:** This file contains the functions necessary to solve the Sudoku puzzles and validate moves. 
 
+
 **Linux download**
 
+
 **Windows download**
+
+
 
 Have fun! :)
