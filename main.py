@@ -19,19 +19,22 @@ BUTTON_TEXT_COLOR = (255, 255, 255)
 BLUR_COLOR = (200, 200, 200)
 
 
-
 #Initialize pygame
 pygame.init()
+
+
 
 #Display
 screen = pygame.display.set_mode((WINDOW_SIZE - 5, WINDOW_SIZE + 50))
 pygame.display.set_caption("Sudoku")
 
 
+
 #Font
 font = pygame.font.Font(None, 36)
 button_font = pygame.font.Font(None, 28)
 message_font = pygame.font.Font(None, 48)
+
 
 
 #Draw grid
@@ -54,7 +57,6 @@ def ispis_brojeva(board, zakljucane_celije):
 
 
 
-
 #Marked cell
 def oznacena_celija(cell):
     if cell is not None:
@@ -63,8 +65,7 @@ def oznacena_celija(cell):
 
 
 
-
-#Draw button
+# Draw button
 def draw_button(text, x, y, width, height, color, text_color):
     pygame.draw.rect(screen, color, (x, y, width, height))
     button_text = button_font.render(text, True, text_color)
@@ -75,18 +76,20 @@ def draw_button(text, x, y, width, height, color, text_color):
 
 #Check user solution
 def check_solution(board, zakljucane_celije):
-    
-    for vrsta in range(9):
-        for kolona in range(9):
+    for vrsta in range(0, 9):
+        for kolona in range(0, 9):
+            
             if not zakljucane_celije[vrsta][kolona]:
                 broj = board[vrsta][kolona]
                 board[vrsta][kolona] = 0
-                
                 if not validan_potez(board, vrsta, kolona, broj):
                     board[vrsta][kolona] = broj
                     return False
                 board[vrsta][kolona] = broj
+    
     return True
+
+
 
 #Main function
 def main():
@@ -96,9 +99,9 @@ def main():
         zakljucane_celije = [[board[i][j] != 0 for j in range(9)] for i in range(9)]
         selektovana_celija = None
         message = ""
-        display_blur = False  #Unblur 
+        display_blur = False  #unblur
 
-    
+
     board = generisi_sudoku()
     zakljucane_celije = [[board[i][j] != 0 for j in range(9)] for i in range(9)]
     selektovana_celija = None
@@ -107,16 +110,19 @@ def main():
     display_blur = False
 
 
+
     while igra:
         for event in pygame.event.get():
+            
             if event.type == pygame.QUIT:
                 igra = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
-                
+
                 if y > GRID_SIZE:
                     if 20 <= x <= 140 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
-                        provera_resenja_sudoku(board)
+                        board = [[0] * 9 for _ in range(9)]  
+                        provera_resenja_sudoku(board)  
                         zakljucane_celije = [[True] * 9 for _ in range(9)]
                     elif 160 <= x <= 280 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
                         reset_board()
@@ -128,9 +134,11 @@ def main():
                         display_blur = True
                 else:
                     selektovana_celija = (y // CELL_SIZE, x // CELL_SIZE)
+
             elif event.type == pygame.KEYDOWN:
                 if selektovana_celija is not None:
                     vrsta, kolona = selektovana_celija
+                    
                     if event.key == pygame.K_UP:
                         selektovana_celija = ((vrsta - 1) % 9, kolona)
                     elif event.key == pygame.K_DOWN:
@@ -180,18 +188,20 @@ def main():
             blur_surface.fill(BLUR_COLOR)
             blur_surface.set_alpha(228)
             screen.blit(blur_surface, (0, 0))
-            
+
             if message:
                 message_text = message_font.render(message, True, TEXT_COLOR)
                 text_rect = message_text.get_rect(center=(WINDOW_SIZE // 2, WINDOW_SIZE // 2))
                 screen.blit(message_text, text_rect)
 
-        
-        
+
+
         pygame.display.flip()
 
 
+
     pygame.quit()
+
 
 
 if __name__ == "__main__":

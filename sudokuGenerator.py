@@ -46,5 +46,3 @@ def kopiranje_table(tabla):
 
 
     return kopirana_tabla            
-
-  
