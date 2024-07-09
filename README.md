@@ -1,4 +1,4 @@
-#Sudoku
+**Sudoku**
 
 How to play?
 
