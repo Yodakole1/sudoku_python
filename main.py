@@ -128,9 +128,9 @@ def main():
                         reset_board()
                     elif 300 <= x <= 420 and GRID_SIZE + 10 <= y <= GRID_SIZE + 50:
                         if check_solution(board, zakljucane_celije):
-                            message = "Tacno!"
+                            message = "Correct!"
                         else:
-                            message = "Nije tacno(Nub si)."
+                            message = "Incorrect :("
                         display_blur = True
                 else:
                     selektovana_celija = (y // CELL_SIZE, x // CELL_SIZE)
