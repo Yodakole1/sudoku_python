@@ -97,14 +97,14 @@ def main():
         nonlocal board, zakljucane_celije, selektovana_celija, message, display_blur
         board = generisi_sudoku()
         zakljucane_celije = [[board[i][j] != 0 for j in range(9)] for i in range(9)]
-        selektovana_celija = None
+        selektovana_celija = (0,0)
         message = ""
         display_blur = False  #unblur
 
 
     board = generisi_sudoku()
     zakljucane_celije = [[board[i][j] != 0 for j in range(9)] for i in range(9)]
-    selektovana_celija = None
+    selektovana_celija = (0,0)
     igra = True
     message = ""
     display_blur = False
