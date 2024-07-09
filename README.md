@@ -9,7 +9,8 @@ Additionally, within each 3x3 subgrid, numbers mustn't repeat.
 
 **Preview:**
 
-[Screencast from 2024-07-09 19-06-13.webm](https://github.com/Yodakole1/sudoku_python/assets/119262845/59507fb3-a071-4d35-83be-62737b4c85c7)
+[sudoku_preview.webm](https://github.com/Yodakole1/sudoku_python/assets/119262845/097a6010-2831-499d-bdd9-3ebaa049d2b9)
+
 
 • Use the arrow keys to move.
 
