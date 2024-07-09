@@ -130,7 +130,7 @@ def main():
                         if check_solution(board, zakljucane_celije):
                             message = "Correct!"
                         else:
-                            message = "Incorrect :("
+                            message = "Incorrect a:("
                         display_blur = True
                 else:
                     selektovana_celija = (y // CELL_SIZE, x // CELL_SIZE)
@@ -178,7 +178,7 @@ def main():
 
 
 
-        draw_button("Resenje", 20, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
+        draw_button("Solution", 20, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
         draw_button("Restart", 160, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
         draw_button("WOOHOO", 300, GRID_SIZE + 10, 120, 40, BUTTON_COLOR, BUTTON_TEXT_COLOR)
 
