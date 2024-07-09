@@ -32,10 +32,7 @@ https://github.com/Yodakole1/sudoku_python/assets/119262845/39aca234-95f7-4bbc-9
 3️⃣**sudokuSolver.py:** This file contains the functions necessary to solve the Sudoku puzzles and validate moves. 
 
 
-**Linux download**
-
-
-**Windows download**
+To download and play the game, visit the release section where you'll find versions available for both Linux and Windows.
 
 
 
