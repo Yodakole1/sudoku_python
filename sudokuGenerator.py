@@ -21,7 +21,7 @@ def generisi_sudoku():
 
 
     #Empty cells
-    prazna_mesta = 46
+    prazna_mesta = random.randint(20,58)
 
     #Remove some numbers
     while(prazna_mesta>0):
